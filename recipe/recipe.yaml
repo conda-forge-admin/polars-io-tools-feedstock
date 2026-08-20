@@ -1,5 +1,5 @@
 context:
-  version: "0.1.2"
+  version: "0.2.0"
   python_min: "3.11"
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/p/polars-io-tools/polars_io_tools-${{ version }}.tar.gz
-  sha256: 5f6500917d5faa8d873f807e5a4ca04f1ddcdbafecca414c76905b6358029280
+  sha256: 85ba3f753b4dbbde8d84fbea6346c8d1a0bb473ef267261f08e77a6e70f3a5ed
 
 build:
   number: 0
