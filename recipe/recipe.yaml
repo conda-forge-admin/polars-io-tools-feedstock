@@ -62,9 +62,6 @@ requirements:
     - requests
     - sqlglot
     - tqdm
-  ignore_run_exports:
-    from_package:
-      - cross-python_${{ target_platform }}
 
 tests:
   - python:
@@ -73,7 +70,9 @@ tests:
       # deltalake 1.5.0 has macOS WHEEL tags for macosx_26_0,
       # which makes pip check fail on older CI runners despite valid imports.
       pip_check: ${{ not osx }}
-      python_version: ${{ python_min }}.*
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
   - if: is_abi3
     then:
       script:
