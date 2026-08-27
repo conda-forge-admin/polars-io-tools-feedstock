@@ -1,5 +1,5 @@
 context:
-  version: "0.2.0"
+  version: "0.2.1"
   python_min: "3.11"
 
 package:
@@ -7,8 +7,8 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/p/polars-io-tools/polars_io_tools-${{ version }}.tar.gz
-  sha256: 85ba3f753b4dbbde8d84fbea6346c8d1a0bb473ef267261f08e77a6e70f3a5ed
+  url: https://files.pythonhosted.org/packages/d7/6f/22b394225bbdc92da5a44e11b194aa3dd2645f7613947bb67a850f8396ee/polars_io_tools-${{ version }}.tar.gz
+  sha256: 0046954d8d0c24ac4e03b3d65c4c635205e4b96fcdabb9d01033ed368d691fcb
 
 build:
   number: 0
@@ -62,9 +62,6 @@ requirements:
     - requests
     - sqlglot
     - tqdm
-  ignore_run_exports:
-    from_package:
-      - cross-python_${{ target_platform }}
 
 tests:
   - python:
@@ -73,15 +70,15 @@ tests:
       # deltalake 1.5.0 has macOS WHEEL tags for macosx_26_0,
       # which makes pip check fail on older CI runners despite valid imports.
       pip_check: ${{ not osx }}
-      python_version: ${{ python_min }}.*
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
   - if: is_abi3
     then:
       script:
         - if: win
-          then: abi3audit %PREFIX%/Lib/site-packages/polars_io_tools/polars_io_tools.pyd -s -v --assume-minimum-abi3 ${{ python_min }}
-          else:
-            - export SP_DIR=$(python -c "import site; print(site.getsitepackages()[0])")
-            - abi3audit $SP_DIR/polars_io_tools/polars_io_tools.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}
+          then: abi3audit %SP_DIR%/polars_io_tools/polars_io_tools.pyd -s -v --assume-minimum-abi3 ${{ python_min }}
+          else: abi3audit $SP_DIR/polars_io_tools/polars_io_tools.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}
       requirements:
         run:
           - python >=${{ python_min }}
