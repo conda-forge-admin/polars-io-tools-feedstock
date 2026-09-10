@@ -25,7 +25,7 @@ requirements:
   build:
     - if: build_platform != target_platform
       then:
-        - python
+        - python ${{ python_min }}.*
         - cross-python_${{ target_platform }}
         - crossenv
         - hatchling
