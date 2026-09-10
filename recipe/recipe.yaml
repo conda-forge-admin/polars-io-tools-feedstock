@@ -1,6 +1,5 @@
 context:
   version: "0.2.2"
-  python_min: "3.11"
 
 package:
   name: polars-io-tools
@@ -11,7 +10,7 @@ source:
   sha256: 49452212a7c71cffaf3b48508f80e5db8a4a49a6c880940bfe89c719ee02e437
 
 build:
-  number: 0
+  number: 1
   python:
     version_independent: true
   script:
@@ -26,9 +25,11 @@ requirements:
   build:
     - if: build_platform != target_platform
       then:
-        - python
+        - python ${{ python_min }}.*
         - cross-python_${{ target_platform }}
         - crossenv
+        - hatchling
+        - hatch-rs
     - ${{ compiler('c') }}
     - ${{ stdlib("c") }}
     - ${{ compiler('rust') }}
