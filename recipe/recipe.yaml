@@ -1,13 +1,13 @@
 context:
-  version: "0.2.6"
+  version: "0.2.7"
 
 package:
   name: polars-io-tools
   version: ${{ version }}
 
 source:
-  url: https://files.pythonhosted.org/packages/22/88/bfcc20dd4372b584f4ba61492bbb930c13a828a44ddedff111de04e054cb/polars_io_tools-${{ version }}.tar.gz
-  sha256: 0dd6bf8ab4ae4c0670278dcdef28b70119444282dece750e781817d34015b6cb
+  url: https://files.pythonhosted.org/packages/f8/6e/597bb50d99aee93da13b6eedc213fea5fb8ed10a8e8874000f7108dcd9d5/polars_io_tools-${{ version }}.tar.gz
+  sha256: fd5e39c9a0b60ffb1b28aed2731aea3b837c71619252f845ae573c53b8131ac7
 
 build:
   number: 0
